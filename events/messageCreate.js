@@ -12,8 +12,6 @@ module.exports = {
         if ((message.content).toLowerCase().includes("egg")){
             message.react("🥚");
         } 
-
-        
     },
     
 };
