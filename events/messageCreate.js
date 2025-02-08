@@ -9,6 +9,10 @@ module.exports = {
             message.react("<a:CUMDETECTED:1225282939147911209>");
         }
 
+        if ((message.content).toLowerCase().includes("egg")){
+            message.react("🥚");
+        } 
+
         
     },
     
