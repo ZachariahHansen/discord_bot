@@ -1,8 +1,5 @@
 # Build stage
-FROM golang:1.23.4-alpine AS builder
-
-# Install git for private dependencies if needed
-RUN apk add --no-cache git
+FROM golang:1.23.4 AS builder
 
 # Set working directory
 WORKDIR /app
@@ -13,22 +10,14 @@ COPY go.mod go.sum ./
 # Download dependencies
 RUN go mod download
 
-# Copy source code
+# Copy the entire project
 COPY . .
 
 # Build the application
-RUN CGO_ENABLED=0 GOOS=linux go build -o main ./main.go
-
-# Final stage
-FROM alpine:latest
-
-WORKDIR /root/
-
-# Copy the binary from builder
-COPY --from=builder /app/main .
+RUN CGO_ENABLED=0 GOOS=linux go build -o /main
 
 # Expose port (adjust as needed)
 EXPOSE 8080
 
 # Command to run the application
-CMD ["./main"]
+CMD ["/main"]

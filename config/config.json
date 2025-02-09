@@ -1,6 +1,0 @@
-{
-    "POSTGRES_USER": "zhansen",
-    "POSTGRES_PASSWORD": "ztib8946!$",
-    "POSTGRES_DB": "discord",
-    "base_url": "http://localhost:3000"
-}
