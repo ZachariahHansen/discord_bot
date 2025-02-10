@@ -12,6 +12,16 @@ module.exports = {
         if ((message.content).toLowerCase().includes("egg")){
             message.react("🥚");
         } 
+
+        try{
+            if ((message.content).toLowerCase().includes("test")){
+                message.reply("message.guildId: " + message.guildId);
+                message.reply("author: " + message.author.id);
+            }
+        } catch (error){
+            message.reply("Error: " + error);
+        }
+
     },
     
 };
