@@ -1,0 +1,6 @@
+{
+    "POSTGRES_USER": "username",
+    "POSTGRES_PASSWORD": "password",
+    "POSTGRES_DB": "database",
+    "base_url": "http://localhost:3000"
+}

@@ -1,0 +1,5 @@
+*.exe
+.gitignore
+README.md
+Dockerfile
+.dockerignore

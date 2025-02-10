@@ -1,23 +1,14 @@
-# Build stage
-FROM golang:1.23.4 AS builder
-
-# Set working directory
+# Stage 1: Build the application
+FROM golang:1.23 AS builder
 WORKDIR /app
-
-# Copy go mod and sum files
 COPY go.mod go.sum ./
-
-# Download dependencies
 RUN go mod download
-
-# Copy the entire project
 COPY . .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
-# Build the application
-RUN CGO_ENABLED=0 GOOS=linux go build -o /main
-
-# Expose port (adjust as needed)
+FROM alpine:latest  
+WORKDIR /root/
+COPY --from=builder /app/main .
+COPY --from=builder /app/config.json .
 EXPOSE 8080
-
-# Command to run the application
-CMD ["/main"]
+CMD ["./main"]
